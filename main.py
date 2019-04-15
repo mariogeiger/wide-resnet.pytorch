@@ -52,9 +52,9 @@ transform_test = transforms.Compose([
 if(args.dataset == 'cifar10'):
     print("| Preparing CIFAR-10 dataset...")
     sys.stdout.write("| ")
-    trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_train)
-    testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=False, transform=transform_test)
-    num_classes = 10
+    trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_train, target_transform=lambda x: x % 2)
+    testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=False, transform=transform_test, target_transform=lambda x: x % 2)
+    num_classes = 2
 elif(args.dataset == 'cifar100'):
     print("| Preparing CIFAR-100 dataset...")
     sys.stdout.write("| ")
