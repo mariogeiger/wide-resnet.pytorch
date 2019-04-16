@@ -111,7 +111,7 @@ if (args.testOnly):
 
         _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
-        correct += predicted.eq(targets.data).cpu().sum()
+        correct += predicted.eq(targets.data).cpu().sum().item()
 
     acc = 100.*correct/total
     print("| Test Result\tAcc@1: %.2f%%" %(acc))
@@ -163,7 +163,7 @@ def train(epoch):
         train_loss += loss.item()
         _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
-        correct += predicted.eq(targets.data).cpu().sum()
+        correct += predicted.eq(targets.data).cpu().sum().item()
 
         sys.stdout.write('\r')
         sys.stdout.write('| Epoch [%3d/%3d] Iter[%3d/%3d]\t\tLoss: %.4f Acc@1: %.3f%%'
@@ -187,7 +187,7 @@ def test(epoch):
         test_loss += loss.item()
         _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
-        correct += predicted.eq(targets.data).cpu().sum()
+        correct += predicted.eq(targets.data).cpu().sum().item()
 
     # Save checkpoint when best model
     acc = 100.*correct/total
